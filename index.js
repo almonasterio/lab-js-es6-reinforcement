@@ -1,12 +1,13 @@
 // ***************************************************************************
 // Iteration 1 - `for...of` loop
 // ***************************************************************************
-
+const usersArray=require('./data')
 const getFirstNames = arr => {
   const userFirstNames = [];
   for (let user of arr) {
-    // Your code goes here ...
+    userFirstNames.push(user.firstName);
   }
+  // console.log(userFirstNames)
 };
 
 getFirstNames(usersArray);
@@ -18,7 +19,11 @@ getFirstNames(usersArray);
 // ***************************************************************************
 
 const getFullNames = arr => {
-  // Your code goes here ...
+  const result=[];
+  for (let user of usersArray){
+    result.push(`${user.firstName} ${user.lastName}`)
+  }
+  // console.log(result)
 };
 
 getFullNames(usersArray);
