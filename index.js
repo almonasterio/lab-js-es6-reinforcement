@@ -20,7 +20,7 @@ getFirstNames(usersArray);
 
 const getFullNames = arr => {
   const result=[];
-  for (let user of usersArray){
+  for (let user of arr){
     result.push(`${user.firstName} ${user.lastName}`)
   }
   // console.log(result)
@@ -37,6 +37,13 @@ getFullNames(usersArray);
 
 const getUsersCreditDetails = arr => {
   // Your code goes here ...
+  const result=[];
+  for (user of arr){
+    const {firstName,lastName,balance}=user;
+    const userDetails={firstName,lastName,balance}
+    result.push(userDetails);
+  }
+  // console.log(result)
 };
 
 getUsersCreditDetails(usersArray);
@@ -55,6 +62,10 @@ getUsersCreditDetails(usersArray);
 
 const genderView = users => {
   // Your code goes here ...
+const resultMale = users.filter(e => e.gender == 'male').map(e => `${e.firstName} ${e.lastName}`)
+const resultFemale = users.filter(e => e.gender == 'female').map(e => `${e.firstName} ${e.lastName}`)
+// console.log(resultMale)
+return {males:resultMale,females:resultFemale}
 };
 
 genderView(usersArray);
@@ -71,6 +82,8 @@ genderView(usersArray);
 const data = genderView(usersArray);
 
 const genderCount = data => {
+  // console.log("females: ", data.females.length)
+  //   console.log("males: ", data.males.length)
   // Your code goes here ...
 };
 
@@ -84,9 +97,16 @@ genderCount(data);
 // ***************************************************************************
 
 const promo20 = users => {
-  // Your code goes here ...
+  let users20=users.map(el=>{
+      return {firstName: el.firstName,balance: el.balance.substring(1, el.balance.length-3).split(',').join("")}
+        
+  }).filter(e=>e.balance.toString()>20000)
+  console.log(users20)
+  users20.forEach(e=>{
+    console.log(`Dear ${e.firstName}, since your balance is ${e.balance}, you are eligible to apply for this awesome credit card.`)
+  })
 };
-
+promo20(usersArray)
 // expected output:
 // Dear Howard, since your balance is $21,307.75, you are eligible to apply for this awesome credit card.
 // Dear Rachelle, since your balance is $35,121.49, you are eligible to apply for this awesome credit card.
@@ -96,6 +116,11 @@ const promo20 = users => {
 // ***************************************************************************
 
 const addActive = users => {
+
+  for(user of users){
+    user["isActive"]=true;
+  }
+console.log(users)
   // Your code goes here ...
 };
 
